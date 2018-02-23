@@ -1,7 +1,6 @@
 class DosesController < ApplicationController
 
   def new
-
     @cocktail = Cocktail.find(params[:cocktail_id])
     #@ingredient = Ingredient.find(params[:cocktail_id][:ingredient_id])
     #byebug
@@ -11,6 +10,7 @@ class DosesController < ApplicationController
 
   def create
     @cocktail = Cocktail.find(params[:cocktail_id])
+
     #@ingredient = Ingredient.find(params[:dose][:ingredient_id])
     @dose = Dose.new(doses_params)
     @dose.cocktail = @cocktail
@@ -22,13 +22,14 @@ class DosesController < ApplicationController
     else
       render :new
     end
-    def destroy
-      @dose = Dose.find(params[:id])
-      @dose.cocktail.destroy
-    end
-
-
   end
+
+    def destroy
+
+      @dose = Dose.find(params[:id])
+      @dose.destroy
+
+    end
 
   private
   def doses_params
